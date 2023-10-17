@@ -81,7 +81,7 @@ tensor = torch.randn(size=(batch_size, seq_len, feature_size))
 # Define RNN 
 rnn_layer = nn.RNN(input_size=16, hidden_size=64, num_layers=1, batch_first=True)
 
-# feed input to the RNN 
+# feed input to the RNN and initialize the first hidden state
 output, hidden = rnn_layer(tensor, torch.randn(size=(1, 8, 64)))
 
 output.shape, hidden.shape
