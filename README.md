@@ -1,11 +1,11 @@
-# Recurrent Neural Network (RNN)
+# Recurrent Neural Network (RNN) 
 
 In this tutorial, we aim to provide a detailed description of RNNs and provide sample codes for implementation. RNNs are basically introduced to capture dependencies in the sequences. This sequence can be a time serie, tokens (words) in a text, patches of image and so on. Recurrent Neural Networks were firstly introduced in 1986 by Rumelhart et al. and are currently the basis of many applications (we refer to this as "primary RNN" in the text).
 intro needed
 
 ![1_B0q2ZLsUUw31eEImeVf3PQ](https://github.com/mohammadr8za/pytorch_rnn/assets/72736177/bdeb10b6-7ef2-4d10-94c7-fb2f83041c4d)
 
-## Primary RNN in Pytorch
+## Primary RNN in Pytorch (Left in the Picture)
 
 RNNs are simply defined in pytorch using the following command:
 *torch.nn.RNN(self, input_size, hidden_size, num_layers=1, nonlinearity='tanh', bias=True, batch_first=False, dropout=0.0, bidirectional=False, device=None, dtype=None)*
