@@ -65,3 +65,24 @@ let's consider our input data has the length of L. (e.g a sentence that comprise
 
 
 Therefore, last_output == hidden 
+
+
+'''
+import torch
+from torch import nn 
+
+# first create a sample input 
+batch_size = 8
+seq_len = 10
+feature_size = 16
+
+tensor = torch.randn(size=(batch_size, seq_len, feature_size))
+
+# Define RNN 
+rnn_layer = nn.RNN(input_size=16, hidden_size=64, num_layers=1, batch_first=True)
+
+# feed input to the RNN 
+output, hidden = rnn_layer(tensor, torch.randn(size=(1, 8, 64)))
+
+output.shape, hidden.shape
+'''
