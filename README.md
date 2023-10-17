@@ -103,7 +103,7 @@ Formula:
 
   f_t = sigmoid(W_f1 * x_t + W_f2 * h_t-1 + b_f)
 
-* Input Gate: this gate with a function of previous hidden state and the current input, defines the necessary new information that should be added to the cell state. it defines a function called i_t and maps it values between 0 and 1. New information is also defined as a function of prervious hidden state and the current input and its output is called N_t. i_t is them multiplied by N_t to decide which new information should be passed to the next cells. Finally the outcome of Forget gate and the Input Gate, update the current cell state using past and new information. 
+* Input Gate: this gate with a function of previous hidden state and the current input, defines the necessary new information that should be added to the cell state. it defines a function called i_t and maps it values between 0 and 1. New information is also defined as a function of prervious hidden state and the current input and its output is called N_t. i_t is then multiplied by N_t to decide which new information should be passed to the next cells. Finally the outcome of Forget gate and the Input Gate, update the current cell state using past and new information. 
 
   i_t = sigmoid(W_i1 * x_t + W_i2 * h_t-1 + b_i)
   
