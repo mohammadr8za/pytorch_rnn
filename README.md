@@ -66,7 +66,7 @@ let's consider our input data has the length of L. (e.g a sentence that comprise
 
 Therefore, last_output == hidden 
 
-
+for more info: [Pytorch RNN](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html)
 ```
 import torch
 from torch import nn 
