@@ -67,7 +67,7 @@ let's consider our input data has the length of L. (e.g a sentence that comprise
 Therefore, last_output == hidden 
 
 
-'''
+```
 import torch
 from torch import nn 
 
@@ -85,4 +85,4 @@ rnn_layer = nn.RNN(input_size=16, hidden_size=64, num_layers=1, batch_first=True
 output, hidden = rnn_layer(tensor, torch.randn(size=(1, 8, 64)))
 
 output.shape, hidden.shape
-'''
+```
