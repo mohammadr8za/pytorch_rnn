@@ -5,7 +5,7 @@ intro needed
 
 ![1_B0q2ZLsUUw31eEImeVf3PQ](https://github.com/mohammadr8za/pytorch_rnn/assets/72736177/bdeb10b6-7ef2-4d10-94c7-fb2f83041c4d)
 
-## Primary RNN in Pytorch (Left in the Picture)
+## Primary RNN in Pytorch (Left Architecture in the Picture Above)
 
 RNNs are simply defined in pytorch using the following command:
 
@@ -90,3 +90,26 @@ print(fr"output shape: {output.shape} \nhidden shape: {hidden.shape}")
 output[0, 9, :], hidden[0, 0, :]
 # Equal!
 ```
+
+## Long-Short Term Memory (LSTM) (Middle Architecture in the Picture Above)
+
+LSTM is an effective variant of RNNs that is brilliantly desinged with more parameters to solve the problem of vanishing gradient in the traditional RNNs. LSTM was introduced by Hochreiter and Schmidhuber in 1997. Let's dig into LSTM atrchitecture. 
+LSTM comprises three main gates: forget gate, input gate, and output gate. 
+* Forget Gate: in this gate the architecture choose which information to keep and which ones to remove. In the forget gate, f_t is defined as a function of hidden state of previous timestamp and the input. Then by applying a sigmoid function the values in f_t are mapped between 0 and 1. 0 means removing information and 1 mean keeping information from previous timestamps (needless to say any value between in the f_t shows how much info should be passes). By multiplying f_t in the values of previous cell state (which brings informtion from previous timestamps) important imformation comes to the current timestamp (or LSTM cell). 
+Formula: 
+
+  f_t = sigmoid(W_f1 * x_t + W_f2 * h_t-1 + b_f)
+
+* Input Gate: this gate with a function of previous hidden state and the current input, defines the necessary new information that should be added to the cell state. it defines a function called i_t and maps it values between 0 and 1. New information is also defined as a function of prervious hidden state and the current input and its output is called N_t. i_t is them multiplied by N_t to decide which new information should be passed to the next cells. Finally the outcome of Forget gate and the Input Gate, update the current cell state using past and new information. 
+
+  i_t = sigmoid(W_i1 * x_t + W_i2 * h_t-1 + b_i)
+  
+  N_t = tanh(W_c1 * x_t + W_c2 * h_t-1 + b_c)
+  
+  c_t = f_t * c_t-1 + i_t * N_t
+  
+* Output Gate: in the output gate, another function is defined to choose which information should be presented in the output of the current cell (hidden state of the current cell). this function is o_t with values between 0 and 1 (by applying a sigmoid function). then this o_t effects on the current cell state (which was updated by Forget and Input gate). (Note: cell state c_t is firstly passes through a tanh activation function)  
+
+  o_t = sigmoid(W_o1 * x_t + W_o2 * h_t-1 + b_o)
+
+  h_t = o_t * tanh(c_t)
