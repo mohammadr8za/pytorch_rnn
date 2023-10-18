@@ -7,6 +7,16 @@ intro needed
 
 ## Primary RNN in Pytorch (Left Architecture in the Picture Above)
 
+### Fundamentals
+
+Primary or traditional RNN is a simple, but a brilliant breakthough, of NN architectures defined to caputre the dependencies in sequential data, whether it is text, speech, patches of image or any other data that can be defined as sequence. 
+In this architecture, a function of previous hidden state and the current input creates the next hidden state, which is also the output of that unit. As this architecture passes all the values from the previous hidden state to the function of output, it cannot be efficient and faces the problem of vanishing gradient. more complex architecture then were introduced and solved this problem, that we will describe in the following sections. 
+
+h_t = tanh(W_1 * h_t-1 + W_2 * x_t + b) 
+
+
+### Primary (Traditional) RNN in Pytorch
+
 RNNs are simply defined in pytorch using the following command:
 
 *torch.nn.RNN(self, input_size, hidden_size, num_layers=1, nonlinearity='tanh', bias=True, batch_first=False, dropout=0.0, bidirectional=False, device=None, dtype=None)*
