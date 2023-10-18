@@ -221,7 +221,7 @@ then GRU suggests a hidden state candidate using the equation below:
 
 h_hat_t = tanh(W_hat1 * x_t + W_hat2 * Hadamard_product(r_t, h_t-1) + b_hat)
 
-and finally provide a hidden state that comes from the weight sum of previous hidden state and the candidate hidden using update gate and the formula provide below:
+and finally provide a hidden state that comes from the weighted sum of previous hidden state and the candidate hidden state using update gate and the formula provide below:
 
 h_t = z_t * h_t-1 + (1 - z_t) * h_hat_t
 
@@ -242,7 +242,7 @@ due to the exact similarity of its inputs to the traditional RNN, for the sake o
 
 **INPUTS**
 * a tensor of shape (B, L, F) [batch_first=True] 
-* initial value for the first unit hidden state (shape: (1, B, hidden_size))
+* initial value for the first unit's hidden state (shape: (1, B, hidden_size))
 
 **OUTPUTS**
 * *output* which is of shape (B, L, hidden_size) and provides the stack of all hidden states from all units
@@ -304,7 +304,7 @@ output, hidden = rnn_layer(tensor, h0)
 output.shape, hidden.shape
 ```
 
-Amazing! Two-Layer Network need initial hidden state with size 2! and the same for any number of layers. So, we will define initial hidden states for any type of RNN (Primary, LSTM or GRU) like:
+Amazing! Two-Layer Network needs initial hidden state with size 2! And the same for any number of layers. So, we will define initial hidden states for any type of RNN (Primary, LSTM or GRU) like:
 
 **(num_layers, batch_size, hidden_size)**  
 
