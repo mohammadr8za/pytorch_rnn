@@ -183,3 +183,39 @@ output.shape, h_o.shape, c_o.shape
 # Last output equals last hidden state
 output[0, 9, :], h_o[0, 0, :]
 ```
+
+## Gated Recurrent Unit (GRU) (Right Architecture in the Picture)
+
+
+GRU is another variant of RNNs introduced in 2014 by Cho et al.
+
+GRU unit has a few advantage over the traditional RNNs:
+
+* Fewer Paramerter which makes it easier and faster for training and less prone to overfitting compared to LSTM.
+* Better at handilng vanishing gradient: it selectively updates its hidden state that helps it avoiding the problem of vanishing gradient, compared to the traditional RNN
+* Better prformance: it has shown better performance over traditional RNNs on a variety of tasks
+
+GRU comprises two gates, reset gate and update gate. 
+
+* Reset Gate: this gate as a function of previous hidden state and the current input, intuitively, decide how much of the information from the previous timestamps is required and how much is no longer required. like LSTM, this function passes a sigmoid function to map its values between 0 and 1. 
+
+  r_t = sigmoid(W_r1 * h_t-1 + W_r2 *  x_t + b_r)
+
+* Update Gate: it also, as a function of previous hidden state and the current input, intuitively, decides how much new information is available in the current input and how much is the copy of previous info. 
+
+  z_t = sigmoid(W_z1 * h_t-2 + W_z2 * x_t + b_z)
+
+then GRU suggests a hidden state candidate using the equation below:
+
+h_hat_t = tanh(W_hat1 * x_t + W_hat2 * Hadamard_product(r_t, h_t-1) + b_hat)
+
+and finally provide a hidden state that comes from the weight sum of previous hidden state and the candidate hidden using update gate and the formula provide below:
+
+h_t = z_t * h_t-1 + (1 - z_t) * h_hat_t
+
+if z_t close to 1, it means keeping previous hidden state as the new hidden state (no info in new input) and vice versa. 
+
+Generally: 
+
+* Reset gate tries to consider short-term dependencies
+* Update gate aims to capture long-term dependencies
