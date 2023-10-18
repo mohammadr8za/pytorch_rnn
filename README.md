@@ -97,6 +97,8 @@ output[0, 9, :], hidden[0, 0, :]
 ![featured](https://github.com/mohammadr8za/pytorch_rnn/assets/72736177/a6bcbd0d-2262-4d1b-baec-3af932af97f4)
 
 
+### Fundamentals
+
 LSTM is an effective variant of RNNs that is brilliantly desinged with more parameters to solve the problem of vanishing gradient in the traditional RNNs. LSTM was introduced by Hochreiter and Schmidhuber in 1997. Let's dig into LSTM atrchitecture. 
 LSTM comprises three main gates: forget gate, input gate, and output gate. 
 
