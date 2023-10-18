@@ -134,6 +134,7 @@ W_projection.shape: (proj_size, hidden_size)
 
 **INPUTS**
 
+
 inputs of LSTM layer are: 
 
 * input_sequence of size (B, L, F)
@@ -141,6 +142,7 @@ inputs of LSTM layer are:
 * initialization of hidden state and cell state in the first LSTM cell of the first layer. (default are initialized to random numbers with normal distribution (0, 1))
 
 **OUTPUTS** 
+
 
 it return three sets of outputs: (outputs, (h_o, c_o))
 
