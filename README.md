@@ -218,6 +218,22 @@ h_t = z_t * h_t-1 + (1 - z_t) * h_hat_t
 
 if z_t close to 1, it means keeping previous hidden state as the new hidden state (no info in new input) and vice versa. 
 
+### GRU in Pytorch
+
+As previous sections, we provide a sample and short code to implement GRU in Pytorch. Let's provide the command and descibe it here: 
+
+*torch.nn.GRU(self, input_size, hidden_size, num_layers=1, bias=True, batch_first=False, dropout=0.0, bidirectional=False, device=None, dtype=None)* 
+
+due to the exact similarity of its inputs to the traditional RNN, for the sake of brevity, we will not repeat them here and ref you to the section of "Primary RNN".
+
+**INPUTS**
+* a tensor of shape (B, L, F) [batch_first=True] 
+* initial value for the first unit hidden state (shape: (1, B, hidden_size))
+
+**OUTPUTS**
+* *output* which is of shape (B, L, hidden_size) and provides the stack of all hidden states from all units
+* *hidden* provides the hidden state from the last unit in the sequence
+
 Generally: 
 
 * Reset gate tries to consider short-term dependencies
