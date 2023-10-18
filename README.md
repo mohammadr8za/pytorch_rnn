@@ -186,6 +186,9 @@ output[0, 9, :], h_o[0, 0, :]
 
 ## Gated Recurrent Unit (GRU) (Right Architecture in the Picture)
 
+![Gated-Recurrent-Unit-GRU](https://github.com/mohammadr8za/pytorch_rnn/assets/72736177/67066e09-3afa-4ddb-a0f8-ce1fa539d626)
+
+### Fundamentals
 
 GRU is another variant of RNNs introduced in 2014 by Cho et al.
 
