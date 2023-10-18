@@ -116,3 +116,61 @@ Formula:
   o_t = sigmoid(W_o1 * x_t + W_o2 * h_t-1 + b_o)
 
   h_t = o_t * tanh(c_t)
+
+### LSTM in Pytorch
+Here we present a short and simple code to show how LSTM is implemented in the Pytorch framework. Firstly, let's look at the specific command: 
+
+*torch.nn.LSTM(self, input_size, hidden_size, num_layers=1, bias=True, batch_first=False, dropout=0.0, bidirectional=False, proj_size=0, device=None, dtype=None)*
+
+**input_size, hidden_size, num_layers, bias=True, batch_first, dropout, bidirectional** are exactly the same as mentioned in the primary RNN. 
+
+**proj_size** is the size we may define to change the dimension of hidden state. LSTM performs this projection using a learnable matrix W. It projects the hidden state size before passing to the output:
+
+h_t_projected = W_projection * h_t_primary 
+
+W_projection.shape: (proj_size, hidden_size)
+
+**INPUTS**
+inputs of LSTM layer are: 
+
+* input_sequence of size (B, L, F)
+
+* initialization of hidden state and cell state in the first LSTM cell of the first layer. (default are initialized to random numbers with normal distribution (0, 1))
+
+**OUTPUTS** 
+it return three sets of outputs: (outputs, (h_o, c_o))
+
+* *outputs* is the concatenaion of all hidden state of shape (B, L, hidden_size)
+
+* *h_o* is the last hidden state (equals the last *output* in the stack) of shape: (1, B, hidden_size)
+
+* *c_o* is the last cell state (or cell state of the last LSTM unit in the layer) of shape: (1, B, hidden_size)
+
+
+```
+import torch
+from torch import nn
+
+# Define dimensions 
+batch_size = 8
+seq_len = 10
+feature_size = 16
+hidden_size = 64
+num_layers = 1
+
+# Input sample
+tensor = torch.randn(size=(batch_size, seq_len, feature_size))
+
+lstm_layer = nn.LSTM(input_size=feature_size, hidden_size=hidden_size, num_layers=1, batch_first=True)
+
+h0, c0 = torch.randn(size=(1, batch_size, hidden_size)), torch.randn(size=(1, batch_size, hidden_size))
+
+output, (h_o, c_o) = lstm_layer(tensor, (h0, c0))
+```
+```
+output.shape, h_o.shape, c_o.shape
+```
+```
+# Last output equals last hidden state
+output[0, 9, :], h_o[0, 0, :]
+```
