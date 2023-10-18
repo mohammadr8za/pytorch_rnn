@@ -295,7 +295,7 @@ output, hidden = rnn_layer(tensor, h0)
 output.shape, hidden.shape
 ```
 
-Amazing! Two Layers need initial hidden state with size 2! and the same for any number of layers. So, we will define initial hidden states for any type of RNN (Primary, LSTM or GRU) like:
+Amazing! Two-Layer Network need initial hidden state with size 2! and the same for any number of layers. So, we will define initial hidden states for any type of RNN (Primary, LSTM or GRU) like:
 
 **(num_layers, batch_size, hidden_size)**  
 
