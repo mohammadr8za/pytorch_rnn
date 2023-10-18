@@ -98,6 +98,7 @@ output[0, 9, :], hidden[0, 0, :]
 
 LSTM is an effective variant of RNNs that is brilliantly desinged with more parameters to solve the problem of vanishing gradient in the traditional RNNs. LSTM was introduced by Hochreiter and Schmidhuber in 1997. Let's dig into LSTM atrchitecture. 
 LSTM comprises three main gates: forget gate, input gate, and output gate. 
+
 * Forget Gate: in this gate the architecture choose which past information to keep and which ones to remove. In the forget gate, f_t is defined as a function of hidden state of previous timestamp and the input. Then by applying a sigmoid function the values in f_t are mapped between 0 and 1. 0 means removing information and 1 mean keeping information from previous timestamps (needless to say any value between in the f_t shows how much info should be passes). By multiplying f_t in the values of previous cell state (which brings informtion from previous timestamps) important imformation comes to the current timestamp (or LSTM cell). 
 Formula: 
 
@@ -118,6 +119,7 @@ Formula:
   h_t = o_t * tanh(c_t)
 
 ### LSTM in Pytorch
+
 Here we present a short and simple code to show how LSTM is implemented in the Pytorch framework. Firstly, let's look at the specific command: 
 
 *torch.nn.LSTM(self, input_size, hidden_size, num_layers=1, bias=True, batch_first=False, dropout=0.0, bidirectional=False, proj_size=0, device=None, dtype=None)*
@@ -131,6 +133,7 @@ h_t_projected = W_projection * h_t_primary
 W_projection.shape: (proj_size, hidden_size)
 
 **INPUTS**
+
 inputs of LSTM layer are: 
 
 * input_sequence of size (B, L, F)
@@ -138,6 +141,7 @@ inputs of LSTM layer are:
 * initialization of hidden state and cell state in the first LSTM cell of the first layer. (default are initialized to random numbers with normal distribution (0, 1))
 
 **OUTPUTS** 
+
 it return three sets of outputs: (outputs, (h_o, c_o))
 
 * *outputs* is the concatenaion of all hidden state of shape (B, L, hidden_size)
