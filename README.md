@@ -239,3 +239,75 @@ due to the exact similarity of its inputs to the traditional RNN, for the sake o
 * *output* which is of shape (B, L, hidden_size) and provides the stack of all hidden states from all units
 * *hidden* provides the hidden state from the last unit in the sequence
 
+
+```
+import torch
+from torch import nn
+
+# first create a sample input
+batch_size = 8
+seq_len = 10
+feature_size = 16
+hidden_size = 64
+num_layers = 1
+
+tensor = torch.randn(size=(batch_size, seq_len, feature_size))
+
+# Define RNN
+rnn_layer = nn.GRU(input_size=feature_size, hidden_size=hidden_size, num_layers=num_layers, batch_first=True)
+
+# feed input to the RNN
+h0 = torch.randn(size=(1, batch_size, hidden_size))
+output, hidden = rnn_layer(tensor, h0)
+
+output.shape, hidden.shape
+```
+
+```
+# last output and hidden
+output[0, 9, :], hidden[0, 0, :]
+# Equal!
+```
+
+Fine! now let's increase number of layers:
+
+
+```
+import torch
+from torch import nn
+
+# first create a sample input
+batch_size = 8
+seq_len = 10
+feature_size = 16
+hidden_size = 64
+num_layers = 2
+
+tensor = torch.randn(size=(batch_size, seq_len, feature_size))
+
+# Define RNN
+rnn_layer = nn.GRU(input_size=feature_size, hidden_size=hidden_size, num_layers=num_layers, batch_first=True)
+
+# feed input to the RNN
+h0 = torch.randn(size=(num_layers, batch_size, hidden_size))
+output, hidden = rnn_layer(tensor, h0)
+
+output.shape, hidden.shape
+```
+
+Amazing! Two Layers need initial hidden state with size 2! and the same for any number of layers. So, we will define initial hidden states for any type of RNN (Primary, LSTM or GRU) like:
+
+**(num_layers, batch_size, hidden_size)**  
+
+be careful that batch_size dimension places in the middle! 
+
+Size of output does not change as it returns the stack of hidden states in the last layer. but we get hidden of size **(num_layers, batch_size, hidden_size)** that provide us with the last hidden state in each layer. 
+
+Let's check if the hidden state of the last layer equals the last output:
+
+```
+output[0, 9, :], hidden[1, 0, :]
+```
+
+VERY GOOD! They are the **SAME!** 
+
