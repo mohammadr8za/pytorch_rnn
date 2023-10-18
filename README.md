@@ -85,7 +85,8 @@ rnn_layer = nn.RNN(input_size=16, hidden_size=64, num_layers=1, batch_first=True
 output, hidden = rnn_layer(tensor, torch.randn(size=(1, 8, 64)))
 
 print(fr"output shape: {output.shape} \nhidden shape: {hidden.shape}")
-
+```
+```
 # last output and hidden
 output[0, 9, :], hidden[0, 0, :]
 # Equal!
